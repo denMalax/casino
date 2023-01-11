@@ -6,6 +6,7 @@ async def set_bot_commands(bot: Bot):
     commands = [
             BotCommand(command="start", description="Перезапустить казино"),
             BotCommand(command="spin", description="Показать клавиатуру и сделать бросок"),
+            BotCommand(command="stat", description="Показать личную статистику"),
             BotCommand(command="stop", description="Убрать клавиатуру"),
             BotCommand(command="help", description="Справочная информация")
         ]

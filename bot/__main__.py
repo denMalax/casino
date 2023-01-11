@@ -6,7 +6,7 @@ from aiogram.dispatcher.fsm.storage.memory import MemoryStorage
 from aiogram.dispatcher.fsm.storage.redis import RedisStorage
 
 from bot.config_reader import config
-from bot.handlers import default_commands, spin
+from bot.handlers import default_commands, spin, stat
 from bot.middlewares.throttling import ThrottlingMiddleware
 from bot.ui_commands import set_bot_commands
 
@@ -28,11 +28,12 @@ async def main():
     # Создание диспетчера
     dp = Dispatcher(storage=storage)
     # Принудительно настраиваем фильтр на работу только в чатах один-на-один с ботом
-    dp.message.filter(F.chat.type == "private")
+    # dp.message.filter(F.chat.type == "private")
 
     # Регистрация роутеров с хэндлерами
     dp.include_router(default_commands.router)
     dp.include_router(spin.router)
+    dp.include_router(stat.router)
 
     # Регистрация мидлвари для троттлинга
     dp.message.middleware(ThrottlingMiddleware())
