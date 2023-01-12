@@ -29,7 +29,6 @@ async def cmd_spin(message: Message, state: FSMContext):
         return
 
     answer_text_template = """\
-        Ваша комбинация: {combo_text} (№{dice_value}).
         {win_or_lose_text} Ваш счёт: <b>{new_score}</b>.
         """
 
@@ -50,8 +49,6 @@ async def cmd_spin(message: Message, state: FSMContext):
     await sleep(THROTTLE_TIME_SPIN)
     await msg.reply(
         dedent(answer_text_template).format(
-            combo_text=combo_text,
-            dice_value=msg.dice.value,
             win_or_lose_text=win_or_lose_text,
             new_score=new_score
         )
